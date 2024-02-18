@@ -1,3 +1,4 @@
+let mapleader = " "
 inoremap jk <esc>
 
 nnoremap ; :
@@ -6,8 +7,12 @@ nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 nnoremap <CR> :normal o<CR>
 nnoremap <S-Enter> :normal O<CR>
-nnoremap <Leader>fi :action GotoFile<CR>
-nnoremap <Leader>ff :action FileStructurePopup<CR>
+nnoremap <Leader>f :action FileStructurePopup<CR>
+nnoremap <Leader>d :action ToggleLineBreakpoint<CR>
+nnoremap <Leader><space> :action GotoFile<CR>
+nnoremap <Leader>: :action ActivateTerminalToolWindow<CR>
+nnoremap <Leader><S-f> :action FindInPath<CR>
+nnoremap <Leader>cp :action ActivatePythonConsoleToolWindow<CR>
 
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
