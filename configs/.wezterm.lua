@@ -1,6 +1,5 @@
-
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 local act = wezterm.action
 local mod = {}
 
@@ -10,9 +9,9 @@ end
 
 local function platform()
 	return {
-		is_windows = is_found(wezterm.target_triple, 'windows'),
-		is_linux = is_found(wezterm.target_triple, 'linux'),
-		is_mac = is_found(wezterm.target_triple, 'apple'),
+		is_windows = is_found(wezterm.target_triple, "windows"),
+		is_linux = is_found(wezterm.target_triple, "linux"),
+		is_mac = is_found(wezterm.target_triple, "apple"),
 	}
 end
 
@@ -28,31 +27,36 @@ end
 -- This is where you actually apply your config choices
 
 if platform().is_mac then
-	mod.SUPER = 'SUPER'
-	mod.SUPER_REV = 'SUPER|CTRL'
+	mod.SUPER = "SUPER"
+	mod.SUPER_REV = "SUPER|CTRL"
 elseif platform().is_windows then
-	config.default_domain = 'WSL:Ubuntu-22.04'
-	mod.SUPER = 'ALT'
-	mod.SUPER_REV = 'ALT|CTRL'
+	config.default_domain = "WSL:Ubuntu-22.04"
+	mod.SUPER = "ALT"
+	mod.SUPER_REV = "ALT|CTRL"
 end
 
 config.keys = {
-	{ key = 'F11', mods = 'NONE', action = act.ToggleFullScreen },
-	{ key = '/', mods = mod.SUPER, action = act.Hide },
+	{ key = "F11", mods = "NONE", action = act.ToggleFullScreen },
+	{ key = "/", mods = mod.SUPER, action = act.Hide },
 }
 
 -- Changing the color scheme:
-config.term = 'xterm-256color'
+config.term = "xterm-256color"
 config.animation_fps = 60
 config.max_fps = 60
-config.color_scheme = 'Gruvbox dark, medium (base16)'
+config.color_scheme = "Gruvbox dark, medium (base16)"
 
 -- Adding JetBrains Mono font and set font size
-config.font = wezterm.font('JetBrains Mono', { weight = 'Medium'})
+-- config.font = wezterm.font('JetBrains Mono', { weight = 'Medium'})
+config.font = wezterm.font_with_fallback({
+	{ family = "JetBrains Mono", weight = "Medium" },
+	{ family = "苹方-简" },
+	{ family = "黑体", weight = "Regular" },
+})
 config.font_size = 13
 
 -- Allow scrolbar
-config.enable_scroll_bar = ture
+config.enable_scroll_bar = true
 
 -- Set to background opacity
 config.window_background_opacity = 0.95
@@ -77,38 +81,37 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 -- About window
 config.window_frame = {
-	active_titlebar_bg = '#343434',
-	inactive_titlebar_bg = '#5c5c5c'
+	active_titlebar_bg = "#343434",
+	inactive_titlebar_bg = "#5c5c5c",
 }
 
 -- About tag bar
 config.colors = {
 	tab_bar = {
-	  background = "#000000",
-	  active_tab = {
-		 bg_color = '#585b70',
-		 fg_color = '#cdd6f4',
-	  },
-	  inactive_tab = {
-		 bg_color = '#313244',
-		 fg_color = '#45475a',
-	  },
-	  inactive_tab_hover = {
-		 bg_color = '#313244',
-		 fg_color = '#cdd6f4',
-	  },
-	  new_tab = {
-		 bg_color = '#1f1f28',
-		 fg_color = '#cdd6f4',
-	  },
-	  new_tab_hover = {
-		 bg_color = '#181825',
-		 fg_color = '#cdd6f4',
-		 italic = true,
-	  },
+		background = "#000000",
+		active_tab = {
+			bg_color = "#585b70",
+			fg_color = "#cdd6f4",
+		},
+		inactive_tab = {
+			bg_color = "#313244",
+			fg_color = "#45475a",
+		},
+		inactive_tab_hover = {
+			bg_color = "#313244",
+			fg_color = "#cdd6f4",
+		},
+		new_tab = {
+			bg_color = "#1f1f28",
+			fg_color = "#cdd6f4",
+		},
+		new_tab_hover = {
+			bg_color = "#181825",
+			fg_color = "#cdd6f4",
+			italic = true,
+		},
 	},
 }
-
 
 -- and finally, return the configuration to wezterm
 return config

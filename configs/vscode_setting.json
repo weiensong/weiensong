@@ -1,0 +1,52 @@
+{
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+
+    "vim.digraphs": {},
+    "vim.useSystemClipboard": true,
+    "editor.fontSize": 19,
+    "editor.fontFamily": "JetBrainsMono Nerd Font Momo",
+    "files.autoSave": "afterDelay",
+    "editor.codeActionsOnSave": {
+    },
+    "editor.lineNumbers": "relative",
+
+    "vim.insertModeKeyBindings": [
+    {
+        "before": ["j", "k"],
+        "after": ["<Esc>"]
+    },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<Tab>"],
+      "commands": [">>"]
+    },
+    {
+      "before": ["<S-Tab>"],
+      "commands": ["<<"]
+    },
+    {
+      "before": ["<CR>"],
+      "commands": [":normal o<CR>"]
+    },
+    {
+      "before": ["<S-Enter>"],
+      "commands": [":normal O<CR>"]
+    },
+    ],
+    "editor.tabSize": 2,
+    "workbench.settings.applyToAllProfiles": [
+
+
+    ],
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+
+}
